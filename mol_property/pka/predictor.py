@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 
 import os
-from sklearn.externals import joblib
+import sklearn.externals.joblib as skjoblib
 from .data_utils import DataUtils
 
 class PkaPredictor(object):
@@ -13,9 +13,9 @@ class PkaPredictor(object):
         self.feature_type = feature_type
 
     def _load_model(self, clf_modelpath, acidic_modelpath, basic_modelpath):
-        self.acidic_reg = joblib.load(acidic_modelpath)
-        self.basic_reg = joblib.load(basic_modelpath)
-        self.clf = joblib.load(clf_modelpath)
+        self.acidic_reg = skjoblib.load(acidic_modelpath)
+        self.basic_reg = skjoblib.load(basic_modelpath)
+        self.clf = skjoblib.load(clf_modelpath)
 
     def predict(self, mols):
         mols_features = DataUtils.get_molecular_features(mols, self.feature_type)
